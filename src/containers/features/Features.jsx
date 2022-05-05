@@ -8,8 +8,8 @@ const Features = () => {
     <section className="features">
         <h2 className="sr-only">Features</h2>
         {
-            features.map((feature)=>{
-                return <Feature data={feature}/>
+            features.map((feature,index)=>{
+                return <Feature data={feature} key={index}/>
             })
         }
     </section>
