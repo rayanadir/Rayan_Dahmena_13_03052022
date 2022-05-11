@@ -1,26 +1,34 @@
-import React from 'react'
-import '../form/Form.scss'
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import auth_service from '../../services/auth.service';
 
 const Form = () => {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const dispatch = useDispatch()
+
+  const submitForm = (e) => {
+    e.preventDefault();
+    dispatch(auth_service.login(email, password));
+  }
+
   return (
-    <form>
-          <div className="input-wrapper">
-            <label htmlFor="username">Username</label>
-            <input type="text" id="username" />
-          </div>
-          <div className="input-wrapper">
-            <label htmlFor="password">Password</label>
-            <input type="password" id="password" />
-          </div>
-          <div className="input-remember">
-            <input type="checkbox" id="remember-me" />
-            <label htmlFor="remember-me">Remember me</label>
-          </div>
-          {/* PLACEHOLDER DUE TO STATIC SITE */} 
-          <a href="/profile" className="sign-in-button">Sign In</a>
-          {/*SHOULD BE THE BUTTON BELOW */}
-          {/*<button className="sign-in-button">Sign In</button>*/}
-        </form>
+    <form onSubmit={(e)=>{submitForm(e)}}>
+      <div className="input-wrapper">
+        <label htmlFor="email">Email</label>
+        <input type="text" id="email" onChange={(e) => { setEmail(e.target.value) }} />
+      </div>
+      <div className="input-wrapper">
+        <label htmlFor="password">Password</label>
+        <input type="password" id="password" onChange={(e) => { setPassword(e.target.value) }} />
+      </div>
+      <div className="input-remember">
+        <input type="checkbox" id="remember-me" />
+        <label htmlFor="remember-me">Remember me</label>
+      </div>
+      <button className="sign-in-button" type='submit'>Sign In</button>
+    </form>
   )
 }
 
