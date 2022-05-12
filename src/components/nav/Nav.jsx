@@ -1,9 +1,10 @@
-import React from 'react'
-import '../nav/Nav.scss'
-import PropTypes from 'prop-types'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 import argentBankLogo from '../../img/argentBankLogo.png';
 
 const Nav = (props) => {
+  const user= useSelector((state)=> state.user)
   return (
       <nav className="main-nav">
         <a className="main-nav-logo" href="/">
@@ -22,11 +23,11 @@ const Nav = (props) => {
               Sign In
             </a>
           </div> 
-          : props.type === "user" ? 
+          : props.page === "user" ? 
           <div>
             <a className="main-nav-item" href="/profile">
               <i className="fa fa-user-circle"></i>
-              Tony
+              {user.firstName}
             </a>
             <a className="main-nav-item" href="/">
               <i className="fa fa-sign-out"></i>
