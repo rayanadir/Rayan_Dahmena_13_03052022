@@ -1,17 +1,28 @@
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import auth_service from '../../services/auth.service';
 
 const Form = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const dispatch = useDispatch()
-
+  const dispatch = useDispatch();
+  const navigate = useNavigate(); 
+  
+  const token= useSelector((state)=> state.login.token)
+  const error= useSelector((state)=> state.login.error)
+  
   const submitForm = (e) => {
     e.preventDefault();
     dispatch(auth_service.login(email, password));
   }
+
+  useEffect(()=>{
+    if(token !== null){
+      navigate('/profile')
+    }
+  },[token, navigate])
 
   return (
     <form onSubmit={(e)=>{submitForm(e)}}>
@@ -28,6 +39,7 @@ const Form = () => {
         <label htmlFor="remember-me">Remember me</label>
       </div>
       <button className="sign-in-button" type='submit'>Sign In</button>
+      {error !== null ? <label className='error'>{error}</label>:""}
     </form>
   )
 }
