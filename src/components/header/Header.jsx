@@ -1,17 +1,14 @@
-import React from 'react'
-import PropTypes from 'prop-types'
+import React from 'react';
+import { useSelector } from 'react-redux';
 
-const Header = props => {
+const Header = () => {
+  const user= useSelector((state)=> state.user)
   return (
     <div className="header">
-        <h1>Welcome back<br />{props.name}</h1>
+        <h1>Welcome back<br />{user.firstName + ' ' + user.lastName}</h1>
         <button className="edit-button">Edit Name</button>
       </div>
   )
-}
-
-Header.propTypes = {
-    name:PropTypes.string
 }
 
 export default Header
