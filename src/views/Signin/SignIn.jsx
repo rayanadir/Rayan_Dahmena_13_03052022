@@ -3,10 +3,11 @@ import Nav from '../../components/nav/Nav';
 import SignInContent from '../../containers/signIn/SignInContent';
 
 const SignIn = () => {
+  document.title="Argent Bank - Login Page"
   return (
     <>
-        <Nav page="signIn"/>
-        <main className='sign-in-content'>
+        <Nav />
+        <main className='main bg-dark'>
             <SignInContent />
         </main>
     </>
