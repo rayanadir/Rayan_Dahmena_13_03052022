@@ -9,7 +9,7 @@ const Index = () => {
   
   return (
     <>
-        <Nav page="index"/>
+        <Nav />
         <main className='main'>
             <Hero />
             <Features />
