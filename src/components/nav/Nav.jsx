@@ -1,35 +1,38 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import argentBankLogo from '../../img/argentBankLogo.png';
+import auth_service from '../../services/auth.service';
 
-const Nav = (props) => {
-  const user= useSelector((state)=> state.user)
+const Nav = () => {
+  const user= useSelector((state)=> state.user);
+  const token= useSelector((state)=> state.login.token);
+  
   return (
       <nav className="main-nav">
-        <a className="main-nav-logo" href="/">
+        <Link className="main-nav-logo" to="/">
           <img
             className="main-nav-logo-image"
             src={argentBankLogo}
             alt="Argent Bank Logo"
           />
           <h1 className="sr-only">Argent Bank</h1>
-        </a>
+        </Link>
         {
-        props.page === "index" || props.page === "signIn" ?
+        token === null ?
           <div>
-            <a className="main-nav-item" href="/login">
+            <Link className="main-nav-item" to="/login">
               <i className="fa fa-user-circle"></i>
               Sign In
-            </a>
+            </Link>
           </div> 
-          : props.page === "user" ? 
-          <div>
-            <a className="main-nav-item" href="/profile">
+          : token !== null ? 
+          <div className='main-nav-items'>
+            <Link className="main-nav-item" to="/profile">
               <i className="fa fa-user-circle"></i>
               {user.firstName}
-            </a>
-            <a className="main-nav-item" href="/">
+            </Link>
+            <a className="main-nav-item" onClick={auth_service.logout} href="/">
               <i className="fa fa-sign-out"></i>
               Sign Out
             </a>
@@ -37,10 +40,6 @@ const Nav = (props) => {
           }
       </nav>
   )
-}
-
-Nav.propTypes={
-  page:PropTypes.string,
 }
 
 export default Nav
