@@ -25,10 +25,17 @@ const userSlice = createSlice({
             state.lastName=null;
             state.id=null;
             state.error=action.payload.message
+        },
+        userLogout: (state) => {
+            state.email=null;
+            state.firstName=null;
+            state.lastName=null;
+            state.id=null;
+            state.error=null;
         }
     }
 })
 
-export const { userSuccess, userFail } = userSlice.actions;
+export const { userSuccess, userFail, userLogout } = userSlice.actions;
 
 export const userReducer = userSlice.reducer;
