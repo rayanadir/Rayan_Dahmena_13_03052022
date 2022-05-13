@@ -1,6 +1,6 @@
 import axios from "axios";
 import { loginFail, loginSuccess } from "../slices/loginSlice";
-import { userFail, userSuccess } from "../slices/userSlice";
+import { userFail, userLogout, userSuccess } from "../slices/userSlice";
 
 const BASE_URL="http://localhost:3001/api/v1";
 
@@ -33,7 +33,9 @@ const userProfile = (token) => (dispatch) => {
     })
 }
 
-const logout = () => {
+const logout = () => (dispatch) =>  {
+    dispatch(userLogout());
+    dispatch(logout());
     sessionStorage.removeItem("user");
 }
 
