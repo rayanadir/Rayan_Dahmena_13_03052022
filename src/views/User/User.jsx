@@ -4,10 +4,10 @@ import Header from '../../components/header/Header';
 import Account from '../../components/account/Account';
 
 const User = () => {
-  document.title="Argent Bank - User Page"
+  document.title="Argent Bank - User Page";
   return (
     <>
-      <Nav page="user"/>
+      <Nav />
       <main className='main bg-dark'>
         <Header />
         <h2 className="sr-only">Accounts</h2>
