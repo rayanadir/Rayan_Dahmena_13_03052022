@@ -32,10 +32,24 @@ const userSlice = createSlice({
             state.lastName=null;
             state.id=null;
             state.error=null;
+        },
+        userUpdateSuccess: (state, action)=>{
+            state.email=action.payload.body.email;
+            state.firstName=action.payload.body.firstName;
+            state.lastName=action.payload.body.lastName;
+            state.id=action.payload.body.id;
+            state.error=null;
+        },
+        userUpdateFail: (state, action) =>{
+            state.email=action.payload.body.email;
+            state.firstName=action.payload.body.firstName;
+            state.lastName=action.payload.body.lastName;
+            state.id=action.payload.body.id;
+            state.error=action.payload.message;
         }
     }
 })
 
-export const { userSuccess, userFail, userLogout } = userSlice.actions;
+export const { userSuccess, userFail, userLogout, userUpdateSuccess, userUpdateFail } = userSlice.actions;
 
 export const userReducer = userSlice.reducer;
