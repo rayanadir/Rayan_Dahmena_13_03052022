@@ -1,5 +1,4 @@
 import React from 'react'
-import '../features/Features.scss'
 import features from '../../data/features'
 import Feature from '../../components/feature/Feature'
 

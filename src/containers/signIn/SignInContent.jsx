@@ -1,6 +1,5 @@
 import React from 'react'
 import Form from '../../components/form/Form'
-import '../signIn/SignInContent.scss'
 
 const SignInContent = () => {
   return (

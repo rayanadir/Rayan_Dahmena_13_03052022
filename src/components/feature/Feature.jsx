@@ -1,5 +1,4 @@
 import React from 'react'
-import '../feature/Feature.scss'
 import PropTypes from 'prop-types'
 
 const Feature = (props) => {
