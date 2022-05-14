@@ -7,7 +7,7 @@ const BASE_URL="http://localhost:3001/api/v1";
 const login =  (email, password) =>  (dispatch) => {
     axios.post(BASE_URL + "/user/login", {email, password})
     .then((response)=>{
-        if(response.data.accessToken){
+        if(response.data.body.token){
             sessionStorage.setItem("user", JSON.stringify(response.data));
         }
         console.log("Authentification réussie : ", response.data);
