@@ -19,6 +19,10 @@ html {
     flex-direction: column;
     min-height: 100vh;
   }
+
+  #remember-me{
+    cursor: pointer;
+  }
   
   .main {
     flex: 1;
@@ -66,6 +70,8 @@ html {
     flex-direction: row;
     align-items: baseline;
     column-gap: 0.2rem;
+    cursor: pointer;
+    font-weight: bold;
   }
   
   .main-nav-item:hover {
@@ -180,6 +186,7 @@ html {
     border-color: #00bc77;
     background-color: #00bc77;
     color: #fff;
+    cursor: pointer;
   }
   
   .sign-in-content {
