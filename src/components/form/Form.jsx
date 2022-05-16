@@ -6,6 +6,7 @@ import auth_service from '../../services/auth.service';
 const Form = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [rememberMe, setRememberMe] =  useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate(); 
@@ -15,7 +16,7 @@ const Form = () => {
   
   const submitForm = (e) => {
     e.preventDefault();
-    dispatch(auth_service.login(email, password));
+    dispatch(auth_service.login(email, password, rememberMe));
   }
 
   useEffect(()=>{
@@ -35,7 +36,7 @@ const Form = () => {
         <input type="password" id="password" onChange={(e) => { setPassword(e.target.value) }} />
       </div>
       <div className="input-remember">
-        <input type="checkbox" id="remember-me" />
+        <input type="checkbox" id="remember-me" onChange={(e) => { setRememberMe(e.target.value) }}/>
         <label htmlFor="remember-me">Remember me</label>
       </div>
       <button className="sign-in-button" type='submit'>Sign In</button>
