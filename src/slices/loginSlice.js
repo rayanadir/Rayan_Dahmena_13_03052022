@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const loginState={
-    token:null,
+    token:localStorage.getItem("token"),
     isAuth: false,
     error:null,
 }
@@ -20,7 +20,7 @@ const loginSlice= createSlice({
             state.isAuth=false;
             state.error= action.payload;
         },
-        logout: (state) => {
+        logoutSuccess: (state) => {
             state.token=null;
             state.isAuth=false;
             state.error=null;
@@ -28,6 +28,6 @@ const loginSlice= createSlice({
     }
 })
 
-export const { loginSuccess, loginFail, logout } = loginSlice.actions;
+export const { loginSuccess, loginFail, logoutSuccess } = loginSlice.actions;
 
 export const loginReducer= loginSlice.reducer ;
