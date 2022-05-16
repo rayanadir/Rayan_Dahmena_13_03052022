@@ -1,12 +1,18 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import argentBankLogo from '../../img/argentBankLogo.png';
 import auth_service from '../../services/auth.service';
 
 const Nav = () => {
   const user= useSelector((state)=> state.user);
   const token= useSelector((state)=> state.login.token);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const onLogout= () => {
+    dispatch(auth_service.logout());
+    navigate('/')
+  }
   
   return (
       <nav className="main-nav">
@@ -32,10 +38,10 @@ const Nav = () => {
               <i className="fa fa-user-circle"></i>
               {user.firstName}
             </Link>
-            <a className="main-nav-item" onClick={auth_service.logout} href="/">
+            <span className="main-nav-item" onClick={onLogout}>
               <i className="fa fa-sign-out"></i>
               Sign Out
-            </a>
+            </span>
           </div> : ""
           }
       </nav>
