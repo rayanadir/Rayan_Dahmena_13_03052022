@@ -5,8 +5,6 @@ import { userFail, userLogout, userSuccess, userUpdateFail, userUpdateSuccess } 
 const BASE_URL = "http://localhost:3001/api/v1";
 
 const login = (email, password, rememberMe) => (dispatch) => {
-    console.log("email login : " , email);
-    console.log("password login : ", password);
     axios.post(BASE_URL + "/user/login", { email, password })
         .then((response) => {
             if (rememberMe) {
