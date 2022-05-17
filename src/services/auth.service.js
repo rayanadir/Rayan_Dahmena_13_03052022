@@ -5,12 +5,20 @@ import { userFail, userLogout, userSuccess, userUpdateFail, userUpdateSuccess } 
 const BASE_URL = "http://localhost:3001/api/v1";
 
 const login = (email, password, rememberMe) => (dispatch) => {
+    console.log("email login : " , email);
+    console.log("password login : ", password);
     axios.post(BASE_URL + "/user/login", { email, password })
         .then((response) => {
             if (rememberMe) {
                 localStorage.setItem("token", JSON.stringify(response.data.body.token));
+                localStorage.setItem("email", email);
+                localStorage.setItem("password", password);
+                localStorage.setItem("remember", true);
             }else{
                 sessionStorage.setItem("token", JSON.stringify(response.data.body.token));
+                localStorage.removeItem("email");
+                localStorage.removeItem("password");
+                localStorage.removeItem("remember");
             }
             dispatch(loginSuccess(response.data))
             return response.data;
@@ -45,7 +53,7 @@ const updateProfile = (firstName, lastName, token) => (dispatch) => {
 
 const logout = () => (dispatch) => {
     sessionStorage.clear();
-    localStorage.clear();
+    localStorage.removeItem("token");
     dispatch(userLogout());
     dispatch(logoutSuccess());
 }
