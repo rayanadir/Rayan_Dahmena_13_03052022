@@ -4,10 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import auth_service from '../../services/auth.service';
 
 const Form = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [rememberMe, setRememberMe] =  useState(false);
-
+  const [email, setEmail] = useState(localStorage.getItem("email") !== null ? localStorage.getItem("email") : '');
+  const [password, setPassword] = useState(localStorage.getItem("password") !== null ? localStorage.getItem("password") : '');
+  const [rememberMe, setRememberMe] =  useState(localStorage.getItem("remember") !== null ? true : false);
+  
   const dispatch = useDispatch();
   const navigate = useNavigate(); 
   
@@ -20,6 +20,11 @@ const Form = () => {
   }
 
   useEffect(()=>{
+    if(localStorage.getItem("remember")==="true"){
+      document.getElementById("email").value=localStorage.getItem("email");
+      document.getElementById("password").value=localStorage.getItem("password");
+      document.getElementById("remember-me").checked=true;
+    }
     if(token !== null){
       navigate('/profile')
     }
@@ -33,10 +38,10 @@ const Form = () => {
       </div>
       <div className="input-wrapper">
         <label htmlFor="password">Password</label>
-        <input type="password" id="password" onChange={(e) => { setPassword(e.target.value) }} />
+        <input type="password" id="password" onChange={(e) => { setPassword(e.target.value)}} />
       </div>
       <div className="input-remember">
-        <input type="checkbox" id="remember-me" onChange={(e) => { setRememberMe(e.target.value) }}/>
+        <input type="checkbox" id="remember-me" onChange={(e) => { setRememberMe(e.target.checked) }}/>
         <label htmlFor="remember-me">Remember me</label>
       </div>
       <button className="sign-in-button" type='submit'>Sign In</button>
