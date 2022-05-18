@@ -4,6 +4,13 @@ import { userFail, userLogout, userSuccess, userUpdateFail, userUpdateSuccess } 
 
 const BASE_URL = "http://localhost:3001/api/v1";
 
+/**
+ * Login function
+ * @param { String } email 
+ * @param { String } password 
+ * @param { Boolean } rememberMe 
+ * @returns { Object }
+ */
 const login = (email, password, rememberMe) => (dispatch) => {
     axios.post(BASE_URL + "/user/login", { email, password })
         .then((response) => {
@@ -26,6 +33,10 @@ const login = (email, password, rememberMe) => (dispatch) => {
         })
 }
 
+/**
+ * Get user profile
+ * @param { String } token 
+ */
 const userProfile = (token) => (dispatch) => {
     axios.post(BASE_URL + "/user/profile", { token }, { headers: { "Authorization": `Bearer ${token}` } })
         .then((response) => {
@@ -36,6 +47,12 @@ const userProfile = (token) => (dispatch) => {
         })
 }
 
+/**
+ * Update user profile
+ * @param { String } firstName 
+ * @param { String } lastName 
+ * @param { String } token 
+ */
 const updateProfile = (firstName, lastName, token) => (dispatch) => {
     axios.put(BASE_URL + "/user/profile",
         { firstName: firstName, lastName: lastName },
@@ -49,6 +66,9 @@ const updateProfile = (firstName, lastName, token) => (dispatch) => {
     })
 }
 
+/**
+ * Logout function
+ */
 const logout = () => (dispatch) => {
     sessionStorage.clear();
     localStorage.removeItem("token");
