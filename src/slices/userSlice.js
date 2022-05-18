@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+//Initial user state
 const userState={
     email:null,
     firstName:null,
@@ -8,6 +9,7 @@ const userState={
     error:null,
 }
 
+//User slices
 const userSlice = createSlice({
     name:"user",
     initialState:userState,

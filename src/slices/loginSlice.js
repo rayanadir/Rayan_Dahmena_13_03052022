@@ -1,11 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 
+//Initial login state
 const loginState={
     token:localStorage.getItem("token"),
     isAuth: false,
     error:null,
 }
 
+//Login slices
 const loginSlice= createSlice({
     name:"login",
     initialState:loginState,
