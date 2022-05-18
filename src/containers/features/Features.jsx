@@ -2,6 +2,10 @@ import React from 'react'
 import features from '../../data/features'
 import Feature from '../../components/feature/Feature'
 
+/**
+ * Creates features container component
+ * @returns { HTMLElement }
+ */
 const Features = () => {
   return (
     <section className="features">
