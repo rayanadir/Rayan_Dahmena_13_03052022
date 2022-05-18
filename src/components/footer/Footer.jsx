@@ -1,6 +1,9 @@
 import React from 'react';
-//import '../footer/Footer.scss'
 
+/**
+ * Creates footer component
+ * @returns { HTMLElement }
+ */
 const Footer = () => {
   const year= new Date().getFullYear()
   return (
