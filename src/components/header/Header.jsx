@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import auth_service from '../../services/auth.service';
 
+/**
+ * Creates header component
+ * @returns { HTMLElement }
+ */
 const Header = () => {
   const user= useSelector((state)=> state.user);
   const firstName= useSelector((state) => state.user.firstName);
