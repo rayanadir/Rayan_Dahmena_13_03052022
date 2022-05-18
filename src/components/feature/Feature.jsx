@@ -1,6 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+/**
+ * Creates feature component
+ * @param { Object } props 
+ * @returns { HTMLElement }
+ */
 const Feature = (props) => {
   return (
     <div className="feature-item">
