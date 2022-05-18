@@ -7,12 +7,13 @@ import { BrowserRouter } from 'react-router-dom';
 import {store} from './app/store';
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
-import { persistStore } from 'redux-persist'
-//import persistor from './app/store';
+import { persistStore } from 'redux-persist';
 
 let persistor = persistStore(store)
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+//Add provider for state managing
+//Add Persist for keeping data
 root.render(
   <Provider store={store}>
     <BrowserRouter>

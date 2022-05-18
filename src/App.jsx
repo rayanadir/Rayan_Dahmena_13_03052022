@@ -5,6 +5,10 @@ import User from './views/User/User'
 import Footer from './components/footer/Footer';
 import { Routes , Route } from "react-router-dom";
 
+/**
+ * Creates App component
+ * @returns { HTMLElement }
+ */
 function App() {
   return (
     <>
