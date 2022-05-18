@@ -6,6 +6,10 @@ import Header from '../../components/header/Header';
 import Account from '../../components/account/Account';
 import auth_service from '../../services/auth.service';
 
+/**
+ * Creates User page component
+ * @returns { HTMLElement}
+ */
 const User = () => {
   document.title="Argent Bank - User Page";
   const token= useSelector((state)=> state.login.token);
