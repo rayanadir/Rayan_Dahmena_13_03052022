@@ -4,6 +4,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import argentBankLogo from '../../img/argentBankLogo.png';
 import auth_service from '../../services/auth.service';
 
+/**
+ * Creates Nav component
+ * @returns { HTMLElement }
+ */
 const Nav = () => {
   const user= useSelector((state)=> state.user);
   const token= useSelector((state)=> state.login.token);
