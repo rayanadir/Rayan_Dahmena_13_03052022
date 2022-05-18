@@ -1,6 +1,10 @@
 import React from 'react'
 import Form from '../../components/form/Form'
 
+/**
+ * Creates signInContent content component
+ * @returns { HTMLElement }
+ */
 const SignInContent = () => {
   return (
       <section className="sign-in-content">
