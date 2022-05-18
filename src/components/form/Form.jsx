@@ -3,6 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import auth_service from '../../services/auth.service';
 
+/**
+ * Creates form component
+ * @returns { HTMLElement }
+ */
 const Form = () => {
   const [email, setEmail] = useState(localStorage.getItem("email") !== null ? localStorage.getItem("email") : '');
   const [password, setPassword] = useState(localStorage.getItem("password") !== null ? localStorage.getItem("password") : '');
