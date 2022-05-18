@@ -2,6 +2,9 @@ import icon_chat from '../img/icon-chat.png';
 import icon_money from '../img/icon-money.png';
 import icon_security from '../img/icon-security.png';
 
+/**
+ * features array
+ */
 const features = [
     {
         src:icon_chat,
