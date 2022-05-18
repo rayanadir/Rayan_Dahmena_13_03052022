@@ -1,6 +1,11 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+/**
+ * Creates account component
+ * @param { String } props 
+ * @returns { HTMLElement }
+ */
 const Account = props => {
   return (
     <section className="account">
