@@ -15,7 +15,7 @@ Please install:
   `npm install axios`
 - [Redux-Toolkit](https://redux-toolkit.js.org/) : Manage your state application with Redux-Toolkit
   `npm install @reduxjs/toolkit`
-- Redux-Persist : Save your state application after refreshes
+- [Redux-Persist](https://www.npmjs.com/package/redux-persist) : Save your state application after refreshes
   `npm install redux-persist` 
 
 
