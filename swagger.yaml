@@ -103,7 +103,7 @@ paths:
         - application/json
       responses:
         '200':
-          description: User profile retrieved successully
+          description: User profile retrieved successfully
           schema:
             $ref: '#/definitions/ApiResponse'
         '400':
@@ -112,17 +112,77 @@ paths:
           description: Internal Server Error
   
   /user/accounts/:
+    get:
+      tags:
+      - User Accounts
+      summary: "Accounts"
+      description: "Returns a list of user accounts"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Accounts retrieved successfully"
+          schema:
+            $ref: '#/definitions/Accounts'
 
   /user/accounts/{accountId}/:        
+    get:
+      tags:
+      - User Account
+      summary: "Account"
+      description: "Returns a user account"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Account retrieved successfully"
+          schema:
+            $ref: '#/definitions/Account'
 
   /user/accounts/{accountId}/transactions/:
-
+    get:
+      tags:
+      - User Transactions
+      summary: "Transactions"
+      description: "Returns a list of user transactions"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Transactions retrieved successfully"
+          schema:
+            $ref: '#/definitions/Transactions'
   /user/accounts/{accountId}/transactions/{transactionId}:
-
+    get:
+      tags:
+      - User Transaction
+      summary: "Transaction"
+      description: "Returns a user transaction"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        "200":
+          description: "Transaction retrieved successfully"
+          schema:
+            $ref: '#/definitions/Transaction'
   /user/accounts/{accountId}/transactions/{transactionId}/category:
-
+    put:
+      tags:
+      - User Transactions
+      summary: "Transaction"
+      description: "Update a category transaction"
+      parameters: []
   /user/accounts/{accountId}/transactions/{transactionId}/notes:
-
+    put:
+      tags:
+      - User Transactions
+      summary: "Transaction"
+      description: "Update a note transaction"
+      parameters: []
 securityDefinitions:
   Bearer:
     type: apiKey
@@ -177,3 +237,14 @@ definitions:
         type: string
       lastName:
         type: string
+  Accounts:
+    type: object
+    properties:
+      accountId: 
+        type: integer
+        format: int64
+      name:
+        type: string
+      amount:
+        type: integer
+        format: int64
