@@ -110,7 +110,6 @@ paths:
           description: Invalid Fields
         '500':
           description: Internal Server Error
-  
   /user/accounts/:
     get:
       tags:
@@ -125,7 +124,8 @@ paths:
           description: "Accounts retrieved successfully"
           schema:
             $ref: '#/definitions/Accounts'
-
+        "500":
+          description: Internal Server Error
   /user/accounts/{accountId}/:        
     get:
       tags:
@@ -140,7 +140,10 @@ paths:
           description: "Account retrieved successfully"
           schema:
             $ref: '#/definitions/Account'
-
+        "404": 
+          description: "Account does not exist"
+        "500":
+          description: "Internal Server Error"
   /user/accounts/{accountId}/transactions/:
     get:
       tags:
@@ -155,6 +158,8 @@ paths:
           description: "Transactions retrieved successfully"
           schema:
             $ref: '#/definitions/Transactions'
+        "500":
+          description: "Internal Server Error"
   /user/accounts/{accountId}/transactions/{transactionId}:
     get:
       tags:
@@ -169,6 +174,10 @@ paths:
           description: "Transaction retrieved successfully"
           schema:
             $ref: '#/definitions/Transaction'
+        "404":
+          description: "Transaction does not exist"
+        "500":
+          description: "Internal Server Error"      
   /user/accounts/{accountId}/transactions/{transactionId}/category:
     put:
       tags:
@@ -176,6 +185,17 @@ paths:
       summary: "Transaction"
       description: "Update a category transaction"
       parameters: []
+      produces:
+        - application/json
+      responses: 
+        "200":
+          description: "Category transaction updated successfully"
+          schema:
+            $ref: "#/definitions/Category"
+        "400":
+          description: Invalid fields
+        "500":
+          description: Internal Server Error
   /user/accounts/{accountId}/transactions/{transactionId}/notes:
     put:
       tags:
@@ -183,6 +203,16 @@ paths:
       summary: "Transaction"
       description: "Update a note transaction"
       parameters: []
+      produces: 
+        - application/json
+      responses: 
+        "200":
+          description: "Note transaction updated successfully"
+          $ref: "#/definitions/Note"
+        "400":
+          description: Invalid fields
+        "500":
+          description: Internal Server Error
 securityDefinitions:
   Bearer:
     type: apiKey
