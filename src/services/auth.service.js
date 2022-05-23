@@ -1,5 +1,5 @@
 import axios from "axios";
-import { loginFail, loginSuccess, logoutSuccess } from "../slices/loginSlice";
+import { loginFail, loginSuccess, logoutSuccess, isToken } from "../slices/loginSlice";
 import { userFail, userLogout, userSuccess, userUpdateFail, userUpdateSuccess } from "../slices/userSlice";
 
 const BASE_URL = "http://localhost:3001/api/v1";
@@ -16,14 +16,8 @@ const login = (email, password, rememberMe) => (dispatch) => {
         .then((response) => {
             if (rememberMe) {
                 localStorage.setItem("token", JSON.stringify(response.data.body.token));
-                localStorage.setItem("email", email);
-                localStorage.setItem("password", password);
-                localStorage.setItem("remember", true);
             }else{
                 sessionStorage.setItem("token", JSON.stringify(response.data.body.token));
-                localStorage.removeItem("email");
-                localStorage.removeItem("password");
-                localStorage.removeItem("remember");
             }
             dispatch(loginSuccess(response.data))
             return response.data;
@@ -37,10 +31,12 @@ const login = (email, password, rememberMe) => (dispatch) => {
  * Get user profile
  * @param { String } token 
  */
-const userProfile = (token) => (dispatch) => {
+const userProfile = (value_token) => (dispatch) => {
+    const token= localStorage.getItem("token") !== null ? localStorage.getItem("token").slice(1,localStorage.getItem("token").length-1) : value_token;
     axios.post(BASE_URL + "/user/profile", { token }, { headers: { "Authorization": `Bearer ${token}` } })
         .then((response) => {
             dispatch(userSuccess(response.data))
+            dispatch(isToken())
         })
         .catch((err) => {
             dispatch(userFail(err.response))
@@ -53,7 +49,8 @@ const userProfile = (token) => (dispatch) => {
  * @param { String } lastName 
  * @param { String } token 
  */
-const updateProfile = (firstName, lastName, token) => (dispatch) => {
+const updateProfile = (firstName, lastName, value_token) => (dispatch) => {
+    const token= localStorage.getItem("token") !== null ? localStorage.getItem("token").slice(1,localStorage.getItem("token").length-1) : value_token;
     axios.put(BASE_URL + "/user/profile",
         { firstName: firstName, lastName: lastName },
         { headers: { "Authorization": `Bearer ${token}` } 
@@ -71,7 +68,6 @@ const updateProfile = (firstName, lastName, token) => (dispatch) => {
  */
 const logout = () => (dispatch) => {
     sessionStorage.clear();
-    localStorage.removeItem("token");
     dispatch(userLogout());
     dispatch(logoutSuccess());
 }
