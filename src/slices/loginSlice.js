@@ -26,10 +26,13 @@ const loginSlice= createSlice({
             state.token=null;
             state.isAuth=false;
             state.error=null;
+        },
+        isToken: (state) => {
+            state.isAuth=true;
         }
     }
 })
 
-export const { loginSuccess, loginFail, logoutSuccess } = loginSlice.actions;
+export const { loginSuccess, loginFail, logoutSuccess, isToken } = loginSlice.actions;
 
 export const loginReducer= loginSlice.reducer ;
