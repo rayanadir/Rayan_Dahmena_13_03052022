@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import auth_service from '../../services/auth.service';
 
@@ -21,6 +21,12 @@ const Header = () => {
     dispatch(auth_service.updateProfile(newFirstName,newLastName,token));
     showEdit(false);
   }
+
+  useEffect(()=>{
+    if(token !==null ){
+      dispatch(auth_service.userProfile(token))
+    }
+  },[token, dispatch])
 
   return (
     <div className="header">
