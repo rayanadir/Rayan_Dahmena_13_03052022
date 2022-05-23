@@ -12,7 +12,7 @@ import auth_service from '../../services/auth.service';
  */
 const User = () => {
   document.title="Argent Bank - User Page";
-  const token= useSelector((state)=> state.login.token);
+  const token= useSelector((state)=> state.login.token !==null ? state.login.token : localStorage.getItem('token') !== null ? localStorage.getItem('token') : null);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   dispatch(auth_service.userProfile(token)); 
@@ -20,6 +20,7 @@ const User = () => {
   useEffect(()=>{
     if(token === null){
       navigate('/')
+      sessionStorage.clear()
     }
   },[token, navigate])
 
