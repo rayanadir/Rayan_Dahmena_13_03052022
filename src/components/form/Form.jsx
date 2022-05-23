@@ -8,9 +8,9 @@ import auth_service from '../../services/auth.service';
  * @returns { HTMLElement }
  */
 const Form = () => {
-  const [email, setEmail] = useState(localStorage.getItem("email") !== null ? localStorage.getItem("email") : '');
-  const [password, setPassword] = useState(localStorage.getItem("password") !== null ? localStorage.getItem("password") : '');
-  const [rememberMe, setRememberMe] =  useState(localStorage.getItem("remember") !== null ? true : false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [rememberMe, setRememberMe] =  useState(false);
   
   const dispatch = useDispatch();
   const navigate = useNavigate(); 
@@ -24,12 +24,7 @@ const Form = () => {
   }
 
   useEffect(()=>{
-    if(localStorage.getItem("remember")==="true"){
-      document.getElementById("email").value=localStorage.getItem("email");
-      document.getElementById("password").value=localStorage.getItem("password");
-      document.getElementById("remember-me").checked=true;
-    }
-    if(token !== null){
+    if(token !== null || localStorage.getItem('token') !== null){
       navigate('/profile')
     }
   },[token, navigate])
