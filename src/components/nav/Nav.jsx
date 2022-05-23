@@ -10,9 +10,10 @@ import auth_service from '../../services/auth.service';
  */
 const Nav = () => {
   const user= useSelector((state)=> state.user);
-  const token= useSelector((state)=> state.login.token);
+  const isAuth= useSelector((state) => state.login.isAuth)
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const onLogout= () => {
     dispatch(auth_service.logout());
     navigate('/')
@@ -29,14 +30,14 @@ const Nav = () => {
           <h1 className="sr-only">Argent Bank</h1>
         </Link>
         {
-        token === null ?
+        isAuth === false ?
           <div>
             <Link className="main-nav-item" to="/login">
               <i className="fa fa-user-circle"></i>
               Sign In
             </Link>
           </div> 
-          : token !== null ? 
+          : isAuth === true ? 
           <div className='main-nav-items'>
             <Link className="main-nav-item" to="/profile">
               <i className="fa fa-user-circle"></i>
