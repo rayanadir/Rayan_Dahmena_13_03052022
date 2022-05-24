@@ -68,6 +68,7 @@ const updateProfile = (firstName, lastName, value_token) => (dispatch) => {
  */
 const logout = () => (dispatch) => {
     sessionStorage.clear();
+    localStorage.removeItem('token')
     dispatch(userLogout());
     dispatch(logoutSuccess());
 }
