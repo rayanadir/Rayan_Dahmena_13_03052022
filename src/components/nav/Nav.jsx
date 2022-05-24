@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import argentBankLogo from '../../img/argentBankLogo.png';
 import auth_service from '../../services/auth.service';
+import { logoClick } from '../../slices/loginSlice';
 
 /**
  * Creates Nav component
@@ -18,10 +19,14 @@ const Nav = () => {
     dispatch(auth_service.logout());
     navigate('/')
   }
+
+  const onLogoClick= () => {
+    dispatch(logoClick())
+  }
   
   return (
       <nav className="main-nav">
-        <Link className="main-nav-logo" to="/">
+        <Link className="main-nav-logo" onClick={onLogoClick} to="/" >
           <img
             className="main-nav-logo-image"
             src={argentBankLogo}
