@@ -8,121 +8,14 @@ host: localhost:3001
 basePath: /api/v1
 schemes:
   - http
-paths:
-  /user/login:
-    post:
-      tags:
-        - User Module
-      summary: Login
-      description: API for Login
-      parameters:
-        - in: body
-          name: body
-          description: Login Payload
-          required: true
-          schema:
-            $ref: '#/definitions/Login'
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: Login Successfully
-          schema:
-            $ref: '#/definitions/LoginResponse'
-        '400':
-          description: Invalid Fields
-        '500':
-          description: Internal Server Error
-  /user/signup:
-    post:
-      tags:
-        - User Module
-      summary: Signup
-      description: API for Signup
-      parameters:
-        - in: body
-          name: body
-          description: Signup Payload
-          required: true
-          schema:
-            $ref: '#/definitions/User'
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: Signup Successfully
-          schema:
-            $ref: '#/definitions/ApiResponse'
-        '400':
-          description: Invalid Fields
-        '500':
-          description: Internal Server Error
-  /user/profile:
-    post:
-      security:
-        - Bearer: []
-      tags:
-        - User Module
-      summary: User Profile API
-      description: API for fetching a user profile
-      parameters:
-        - in: header
-          name: Authorization
-          description: Attach Bearer JWT token
-          required: true
-          type: string
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: User profile retrieved successully
-          schema:
-            $ref: '#/definitions/ApiResponse'
-        '400':
-          description: Invalid Fields
-        '401':
-          description: Authorization error
-        '500':
-          description: Internal Server Error
-    put:
-      security:
-        - Bearer: []
-      tags:
-        - User Module
-      summary: User Profile API
-      description: API for updating a user profile
-      parameters:
-        - in: header
-          name: Authorization
-          description: Attach Bearer JWT token
-          required: true
-          type: string
-        - in: body
-          name: body
-          description: Update user profile attributes
-          required: true
-          schema:
-            $ref: '#/definitions/UserProfile'
-      produces:
-        - application/json
-      responses:
-        '200':
-          description: User profile retrieved successfully
-          schema:
-            $ref: '#/definitions/ApiResponse'
-        '400':
-          description: Invalid Fields
-        '401':
-          description: Authorization error
-        '500':
-          description: Internal Server Error
-  /user/accounts:
+paths: 
+  /accounts:
     get:
       security:
         - Bearer : []
       tags:
       - Accounts
-      summary: "Accounts"
+      summary: "Gets all user accounts"
       description: "Returns a list of user accounts"
       produces:
       - "application/json"
@@ -141,13 +34,13 @@ paths:
           description: Authorization error
         "500":
           description: Internal Server Error
-  /user/accounts/{accountId}:        
+  /accounts/{accountId}:        
     get:
       security:
         - Bearer : []
       tags:
       - Accounts
-      summary: "Account"
+      summary: "Gets single user account"
       description: "Returns a user account"
       produces:
       - "application/json"
@@ -168,13 +61,13 @@ paths:
           description: "Account does not exist"
         "500":
           description: "Internal Server Error"
-  /user/accounts/{accountId}/transactions:
+  /accounts/{accountId}/transactions:
     get:
       security:
         - Bearer : []
       tags:
       - Transactions
-      summary: "Transactions"
+      summary: "Gets all user transactions"
       description: "Returns a list of user transactions"
       produces:
       - "application/json"
@@ -193,13 +86,13 @@ paths:
           description: Authorization error
         "500":
           description: "Internal Server Error"
-  /user/accounts/{accountId}/transactions/{transactionId}:
+  /accounts/{accountId}/transactions/{transactionId}:
     get:
       security:
         - Bearer : []
       tags:
       - Transactions
-      summary: "Transaction"
+      summary: "Gets single user transaction"
       description: "Returns a user transaction"
       produces:
       - "application/json"
@@ -230,8 +123,8 @@ paths:
         - Bearer : []
       tags:
       - Transactions
-      summary: "Transaction"
-      description: "Update a category transaction"
+      summary: "Updates category/note transaction"
+      description: "Updates category/note transaction"
       parameters: 
         - in: header
           name: Authorization
@@ -267,62 +160,12 @@ paths:
           description: Authorization error          
         "500":
           description: Internal Server Error
-
 securityDefinitions:
   Bearer:
     type: apiKey
     name: Authorization
     in: header
-
 definitions:
-  User:
-    properties:
-      email:
-        type: string
-        description: user email
-      password:
-        type: string
-        description: user password
-      firstName:
-        type: string
-        description: user first name
-      lastName:
-        type: string
-        description: user last name
-  Login:
-    properties:
-      email:
-        type: string
-        description: user email
-      password:
-        type: string
-        description: user password
-  ApiResponse:
-    type: object
-    properties:
-      status:
-        type: integer
-      message:
-        type: string
-      body:
-        type: object
-        properties:
-          id:
-            type: string
-          email:
-            type: string
-  LoginResponse:
-    type: object
-    properties:
-      token:
-        type: string
-  UserProfile:
-    type: object
-    properties:
-      firstName:
-        type: string
-      lastName:
-        type: string
   Account:
     type: object
     properties:
